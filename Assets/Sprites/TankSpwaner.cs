@@ -2,12 +2,22 @@ using UnityEngine;
 
 public class TankSpwaner : MonoBehaviour
 {
-    public GameObject Tank;
+    public TankView TankView;
 
     void Start()
     {
         /* Instantiating(Spawing) a "Tank" model in game.*/
 
-        Instantiate(Tank, transform.position, Quaternion.identity);
+        //Instantiate(TankView.gameObject, transform.position, Quaternion.identity);
+
+        CreateTank();
+    }
+
+
+    private void CreateTank()
+    {
+        TankModel model = new TankModel();
+
+        TankController tankController = new TankController(model, TankView);
     }
 }
