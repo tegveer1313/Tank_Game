@@ -24,16 +24,25 @@ public class TankSpwaner : MonoBehaviour
 
         //Instantiate(TankView.gameObject, transform.position, Quaternion.identity);
 
-        CreateTank();
     }
 
 
-    private void CreateTank()
+    public void CreateTank(TankType _tankType)
     {
-
-        //Spawning Green tank { Enement number"0"} only.
-        TankModel model = new TankModel(tankList[0].movementSpeed, tankList[0].RotationSpeed, tankList[0].type, tankList[0].color);
-
-        TankController tankController = new TankController(model, TankView);
+        if (_tankType == TankType.RedTank)
+        {
+            TankModel model = new TankModel(tankList[0].movementSpeed, tankList[0].RotationSpeed, tankList[0].type, tankList[0].color);
+            TankController tankController = new TankController(model, TankView);
+        }
+        else if (_tankType == TankType.BlueTank)
+        {
+            TankModel model = new TankModel(tankList[1].movementSpeed, tankList[1].RotationSpeed, tankList[1].type, tankList[1].color);
+            TankController tankController = new TankController(model, TankView);
+        }
+        else if (_tankType == TankType.GreenTank)
+        {
+            TankModel model = new TankModel(tankList[2].movementSpeed, tankList[2].RotationSpeed, tankList[2].type, tankList[2].color);
+            TankController tankController = new TankController(model, TankView);
+        }
     }
 }
