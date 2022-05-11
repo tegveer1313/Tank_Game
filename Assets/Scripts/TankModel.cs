@@ -10,6 +10,7 @@ public class TankModel
     public TankType type;
     public Material color;
 
+
     public TankModel(float _Movement, float _Rotation, TankType tank, Material _color)
     {
         movementSpeed = _Movement;

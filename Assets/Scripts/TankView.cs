@@ -6,9 +6,13 @@ public class TankView : MonoBehaviour
 
     public float Movement;
     public float Rotation;
+    public float BulletSpeed;
 
     public Rigidbody rigidbody;
+    public GameObject Bullet;
+    public Transform Bullet_Spawner;
     public MeshRenderer[] TankSubObjects;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +27,7 @@ public class TankView : MonoBehaviour
     void Update()
     {
         movement(); 
+        Fire(BulletSpeed);
 
         if(Movement != 0)
         {
@@ -57,6 +62,17 @@ public class TankView : MonoBehaviour
         for(int i=0; i<TankSubObjects.Length; i++)
         {
             TankSubObjects[i].material = color;
+        }
+    }
+
+    public void Fire(float bulletSpeed)
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameObject tempBullet = Instantiate(Bullet, Bullet_Spawner.position, transform.rotation);
+            Rigidbody tempBulletRigi = tempBullet.GetComponent<Rigidbody>();
+            tempBulletRigi.AddForce(tempBulletRigi.transform.forward * bulletSpeed);
+            Destroy(tempBullet, 5f);
         }
     }
 }
